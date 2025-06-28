@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Security Monitoring Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">SecMonitor</h2>
+                <div class="status-indicator">
+                    <span class="status-dot active"></span>
+                    <span class="status-text">Active</span>
+                </div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <button class="nav-link active" data-section="dashboard">
+                        <span class="nav-icon">📊</span>
+                        Dashboard
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="active-scanner">
+                        <span class="nav-icon">🔍</span>
+                        Active Scanner
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="passive-monitor">
+                        <span class="nav-icon">📡</span>
+                        Passive Monitor
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="tool-library">
+                        <span class="nav-icon">🛠️</span>
+                        Tool Library
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="osint">
+                        <span class="nav-icon">🕵️</span>
+                        OSINT Intelligence
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="analytics">
+                        <span class="nav-icon">📈</span>
+                        Analytics & Reports
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="tutorial">
+                        <span class="nav-icon">📚</span>
+                        Tutorial Center
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-section="settings">
+                        <span class="nav-icon">⚙️</span>
+                        Settings & Config
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1>Network Security Dashboard</h1>
+                    <div class="header-actions">
+                        <button class="btn btn--primary" id="refresh-dashboard">Refresh</button>
+                        <button class="btn btn--secondary" id="export-report">Export Report</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Network Overview</h3>
+                        <div class="metric-grid">
+                            <div class="metric">
+                                <span class="metric-value" id="active-hosts">24</span>
+                                <span class="metric-label">Active Hosts</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value" id="open-ports">156</span>
+                                <span class="metric-label">Open Ports</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value threat" id="vulnerabilities">12</span>
+                                <span class="metric-label">Vulnerabilities</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value critical" id="threats">3</span>
+                                <span class="metric-label">Active Threats</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Real-time Monitoring</h3>
+                        <div class="monitoring-display">
+                            <div class="network-topology">
+                                <div class="topology-node router">Router</div>
+                                <div class="topology-connections">
+                                    <div class="topology-node device">Device 1</div>
+                                    <div class="topology-node device">Device 2</div>
+                                    <div class="topology-node device">Device 3</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-feed" id="activity-feed">
+                            <div class="activity-item">
+                                <span class="activity-time">14:27</span>
+                                <span class="activity-desc">Port scan completed on 192.168.1.0/24</span>
+                                <span class="status status--success">Success</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">14:25</span>
+                                <span class="activity-desc">Vulnerability detected on host 192.168.1.45</span>
+                                <span class="status status--warning">Warning</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-time">14:22</span>
+                                <span class="activity-desc">WiFi scan initiated</span>
+                                <span class="status status--info">Info</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="action-btn" data-action="nmap-scan">
+                                <span class="action-icon">🔍</span>
+                                <span class="action-text">Nmap Scan</span>
+                            </button>
+                            <button class="action-btn" data-action="wifi-scan">
+                                <span class="action-icon">📡</span>
+                                <span class="action-text">WiFi Scan</span>
+                            </button>
+                            <button class="action-btn" data-action="vuln-scan">
+                                <span class="action-icon">🛡️</span>
+                                <span class="action-text">Vulnerability Scan</span>
+                            </button>
+                            <button class="action-btn" data-action="osint-lookup">
+                                <span class="action-icon">🕵️</span>
+                                <span class="action-text">OSINT Lookup</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Active Scanner Section -->
+            <section id="active-scanner" class="content-section">
+                <div class="section-header">
+                    <h1>Active Scanner</h1>
+                    <div class="header-actions">
+                        <button class="btn btn--primary" id="start-scan">Start Scan</button>
+                        <button class="btn btn--secondary" id="stop-scan">Stop All</button>
+                    </div>
+                </div>
+
+                <div class="scanner-layout">
+                    <div class="tool-categories">
+                        <div class="category-tabs">
+                            <button class="category-tab active" data-category="network">Network Scanning</button>
+                            <button class="category-tab" data-category="wireless">Wireless Security</button>
+                            <button class="category-tab" data-category="web">Web Testing</button>
+                            <button class="category-tab" data-category="osint">OSINT Tools</button>
+                        </div>
+
+                        <div class="tools-grid" id="tools-grid">
+                            <!-- Tools will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="scan-console">
+                        <div class="console-header">
+                            <h3>Scan Console</h3>
+                            <button class="btn btn--sm btn--outline" id="clear-console">Clear</button>
+                        </div>
+                        <div class="console-output" id="console-output">
+                            <div class="console-line">Welcome to SecMonitor - Network Security Platform</div>
+                            <div class="console-line">Ready to execute security scans...</div>
+                        </div>
+                        <div class="console-input">
+                            <input type="text" class="form-control" id="command-input" placeholder="Enter command...">
+                            <button class="btn btn--primary" id="execute-command">Execute</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Passive Monitor Section -->
+            <section id="passive-monitor" class="content-section">
+                <div class="section-header">
+                    <h1>Passive Network Monitor</h1>
+                    <div class="header-actions">
+                        <button class="btn btn--primary" id="start-monitor">Start Monitoring</button>
+                        <button class="btn btn--secondary" id="pause-monitor">Pause</button>
+                    </div>
+                </div>
+
+                <div class="monitor-grid">
+                    <div class="monitor-card">
+                        <h3>Network Traffic</h3>
+                        <div class="traffic-chart">
+                            <canvas id="traffic-chart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="monitor-card">
+                        <h3>Intrusion Detection</h3>
+                        <div class="alerts-list" id="alerts-list">
+                            <div class="alert-item">
+                                <span class="alert-severity high">HIGH</span>
+                                <span class="alert-message">Suspicious port scan detected from 192.168.1.100</span>
+                                <span class="alert-time">14:30:15</span>
+                            </div>
+                            <div class="alert-item">
+                                <span class="alert-severity medium">MEDIUM</span>
+                                <span class="alert-message">Unusual traffic pattern on port 443</span>
+                                <span class="alert-time">14:28:42</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="monitor-card">
+                        <h3>Bandwidth Usage</h3>
+                        <div class="bandwidth-display">
+                            <div class="bandwidth-bar">
+                                <div class="bandwidth-fill" style="width: 65%"></div>
+                            </div>
+                            <div class="bandwidth-stats">
+                                <span>Download: 45.2 MB/s</span>
+                                <span>Upload: 12.8 MB/s</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tool Library Section -->
+            <section id="tool-library" class="content-section">
+                <div class="section-header">
+                    <h1>Security Tool Library</h1>
+                    <div class="header-actions">
+                        <input type="text" class="form-control" id="tool-search" placeholder="Search tools...">
+                    </div>
+                </div>
+
+                <div class="tool-library-grid" id="tool-library-grid">
+                    <!-- Tool cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- OSINT Intelligence Section -->
+            <section id="osint" class="content-section">
+                <div class="section-header">
+                    <h1>OSINT Intelligence Hub</h1>
+                    <div class="header-actions">
+                        <button class="btn btn--primary" id="configure-apis">Configure APIs</button>
+                    </div>
+                </div>
+
+                <div class="osint-layout">
+                    <div class="osint-sources">
+                        <div class="source-card">
+                            <h3>Shodan Intelligence</h3>
+                            <div class="source-status">
+                                <span class="status-dot active"></span>
+                                <span>Connected</span>
+                            </div>
+                            <div class="source-actions">
+                                <input type="text" class="form-control" placeholder="Search IP or domain...">
+                                <button class="btn btn--primary">Search</button>
+                            </div>
+                        </div>
+
+                        <div class="source-card">
+                            <h3>WiGLE Database</h3>
+                            <div class="source-status">
+                                <span class="status-dot active"></span>
+                                <span>Connected</span>
+                            </div>
+                            <div class="source-actions">
+                                <input type="text" class="form-control" placeholder="Search WiFi networks...">
+                                <button class="btn btn--primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="intelligence-feed">
+                        <h3>Intelligence Feed</h3>
+                        <div class="feed-items" id="intel-feed">
+                            <div class="feed-item">
+                                <span class="feed-source">Shodan</span>
+                                <span class="feed-content">New vulnerable device found: Apache/2.4.41 on 45.123.45.67</span>
+                                <span class="feed-time">2 minutes ago</span>
+                            </div>
+                            <div class="feed-item">
+                                <span class="feed-source">WiGLE</span>
+                                <span class="feed-content">WiFi network "FreeWiFi" detected at coordinates 40.7128, -74.0060</span>
+                                <span class="feed-time">5 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="content-section">
+                <div class="section-header">
+                    <h1>Analytics & Reports</h1>
+                    <div class="header-actions">
+                        <select class="form-control" id="time-range">
+                            <option value="1h">Last Hour</option>
+                            <option value="24h">Last 24 Hours</option>
+                            <option value="7d">Last 7 Days</option>
+                            <option value="30d">Last 30 Days</option>
+                        </select>
+                        <button class="btn btn--primary" id="generate-report">Generate Report</button>
+                    </div>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Vulnerability Trends</h3>
+                        <canvas id="vuln-chart" width="400" height="200"></canvas>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Scan Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-value">1,247</span>
+                                <span class="stat-label">Total Scans</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">89</span>
+                                <span class="stat-label">Vulnerabilities Found</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">34</span>
+                                <span class="stat-label">Critical Issues</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">98.5%</span>
+                                <span class="stat-label">Scan Success Rate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-card">
+                        <h3>Network Coverage</h3>
+                        <div class="coverage-display">
+                            <div class="coverage-item">
+                                <span class="coverage-label">Internal Network</span>
+                                <div class="coverage-bar">
+                                    <div class="coverage-fill" style="width: 95%"></div>
+                                </div>
+                                <span class="coverage-percent">95%</span>
+                            </div>
+                            <div class="coverage-item">
+                                <span class="coverage-label">DMZ</span>
+                                <div class="coverage-bar">
+                                    <div class="coverage-fill" style="width: 78%"></div>
+                                </div>
+                                <span class="coverage-percent">78%</span>
+                            </div>
+                            <div class="coverage-item">
+                                <span class="coverage-label">Wireless</span>
+                                <div class="coverage-bar">
+                                    <div class="coverage-fill" style="width: 82%"></div>
+                                </div>
+                                <span class="coverage-percent">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tutorial Section -->
+            <section id="tutorial" class="content-section">
+                <div class="section-header">
+                    <h1>Tutorial Center</h1>
+                    <div class="header-actions">
+                        <input type="text" class="form-control" id="tutorial-search" placeholder="Search tutorials...">
+                    </div>
+                </div>
+
+                <div class="tutorial-layout">
+                    <div class="tutorial-sidebar">
+                        <div class="tutorial-categories">
+                            <h3>Categories</h3>
+                            <ul class="tutorial-menu">
+                                <li><button class="tutorial-category active" data-category="basics">Network Basics</button></li>
+                                <li><button class="tutorial-category" data-category="tools">Tool Tutorials</button></li>
+                                <li><button class="tutorial-category" data-category="ethics">Ethical Hacking</button></li>
+                                <li><button class="tutorial-category" data-category="advanced">Advanced Techniques</button></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-content">
+                        <div class="tutorial-detail" id="tutorial-detail">
+                            <h2>Welcome to the Tutorial Center</h2>
+                            <p>Select a category from the left sidebar to begin learning about network security monitoring and penetration testing tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settings" class="content-section">
+                <div class="section-header">
+                    <h1>Settings & Configuration</h1>
+                    <div class="header-actions">
+                        <button class="btn btn--primary" id="save-settings">Save Settings</button>
+                    </div>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>API Configuration</h3>
+                        <div class="form-group">
+                            <label class="form-label">Shodan API Key</label>
+                            <input type="password" class="form-control" id="shodan-key" placeholder="Enter Shodan API key">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">WiGLE API Key</label>
+                            <input type="password" class="form-control" id="wigle-key" placeholder="Enter WiGLE API key">
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Scan Configuration</h3>
+                        <div class="form-group">
+                            <label class="form-label">Default Scan Rate</label>
+                            <select class="form-control" id="scan-rate">
+                                <option value="slow">Slow (Stealth)</option>
+                                <option value="normal" selected>Normal</option>
+                                <option value="fast">Fast (Aggressive)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Timeout (seconds)</label>
+                            <input type="number" class="form-control" id="scan-timeout" value="30">
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>Alerts & Notifications</h3>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <input type="checkbox" id="enable-alerts" checked>
+                                Enable real-time alerts
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">
+                                <input type="checkbox" id="enable-email" checked>
+                                Email notifications
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Tool Detail Modal -->
+    <div id="tool-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-tool-name">Tool Name</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tool-tabs">
+                    <button class="tool-tab active" data-tab="overview">Overview</button>
+                    <button class="tool-tab" data-tab="tutorial">Tutorial</button>
+                    <button class="tool-tab" data-tab="commands">Commands</button>
+                    <button class="tool-tab" data-tab="execute">Execute</button>
+                </div>
+                <div class="tool-content" id="tool-content">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
